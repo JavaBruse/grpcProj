@@ -6,14 +6,14 @@
 
 собрать проект server
 ```shell
-mvn clean package -Pserver
+mvn package -Pserver
 ```
 собрать проект client
 ```shell
-mvn clean package -Pclient
+mvn package -Pclient
 ```
 ```shell
-docker-compose up
+docker-compose up -d
 ```
 запускаеются 2 контейнера, в одном сервер, в другом клиент. 
 Клиент шлет сообщение на сервер, сервер отвечает.

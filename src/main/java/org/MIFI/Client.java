@@ -27,51 +27,46 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Client {
-  private static final Logger logger = Logger.getLogger(Client.class.getName());
+    private static final Logger logger = Logger.getLogger(Client.class.getName());
 
-  private final GreeterGrpc.GreeterBlockingStub blockingStub;
+    private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
-  public Client(Channel channel) {
-    blockingStub = GreeterGrpc.newBlockingStub(channel);
-  }
-
-  public void greet(String name) {
-    logger.info("Will try to greet " + name + " ...");
-    HelloRequest request = HelloRequest.newBuilder().setName(name).build();
-    HelloReply response;
-    try {
-      response = blockingStub.sayHello(request);
-    } catch (StatusRuntimeException e) {
-      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-      return;
-    }
-    logger.info("Greeting: " + response.getMessage());
-  }
-
-  public static void main(String[] args) throws Exception {
-    String user = "world";
-    String target = "localhost:50051";
-    if (args.length > 0) {
-      if ("--help".equals(args[0])) {
-        System.err.println("Usage: [name [target]]");
-        System.err.println("");
-        System.err.println("  name    The name you wish to be greeted by. Defaults to " + user);
-        System.err.println("  target  The server to connect to. Defaults to " + target);
-        System.exit(1);
-      }
-      user = args[0];
-    }
-    if (args.length > 1) {
-      target = args[1];
+    public Client(Channel channel) {
+        blockingStub = GreeterGrpc.newBlockingStub(channel);
     }
 
-    ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
-        .build();
-    try {
-      Client client = new Client(channel);
-      client.greet(user);
-    } finally {
-      channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+    public void greet(String name) {
+        logger.info("Will try to greet " + name + " ...");
+        HelloRequest request = HelloRequest.newBuilder().setName(name).build();
+        HelloReply response;
+        try {
+            response = blockingStub.sayHello(request);
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+            return;
+        }
+        logger.info("Greeting: " + response.getMessage());
     }
-  }
+
+    public static void main(String[] args) throws Exception {
+        String user = "Иван";
+        String target = "service1:50051";
+
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+        int x = 1;
+        Thread.sleep(10000);
+        try {
+            while (true) {
+                Client client = new Client(channel);
+                client.greet(user + " " + x);
+                x++;
+                Thread.sleep(10000);
+            }
+        } finally {
+            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+        }
+
+
+    }
 }

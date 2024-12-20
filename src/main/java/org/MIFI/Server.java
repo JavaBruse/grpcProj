@@ -71,7 +71,10 @@ public class Server {
   static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
     @Override
     public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
-      HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+      String name = req.getName();
+      logger.info("Получено сообщение: " + name);  // Логирование полученного запроса
+      String message = "Привет " + name;
+      HelloReply reply = HelloReply.newBuilder().setMessage(message).build();
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     }

@@ -5,8 +5,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile1
+    ports:
+      - "0.0.0.0:50051:50051"
+    networks:
+      - grpc-network
 
   service2:
     build:
       context: .
       dockerfile: Dockerfile2
+    ports:
+      - "0.0.0.0:50052:50052"
+    networks:
+      - grpc-network
+
+networks:
+  grpc-network:
+    driver: bridge
