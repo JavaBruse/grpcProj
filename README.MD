@@ -1,3 +1,54 @@
+<details><summary>Использованные Maven зависимости</summary>
+ 
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-services</artifactId>
+      
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId>
+            <scope>runtime</scope>
+      
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+       
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+        
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>${protobuf.version}</version>
+      
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
+            
+            <groupId>com.google.j2objc</groupId>
+            <artifactId>j2objc-annotations</artifactId>
+            <version>3.0.0</version>
+  
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+</details>
+
+
+
+<details><summary>Плагин сборки proto файлов</summary>
+<build>
+
+org.xolstice.maven.plugins:protobuf-maven-plugin:0.6.1
+
+com.google.protobuf:protoc:${protoc.version}:exe:windows-x86_64:grpc-java
+
+io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:windows-x86_64
+</details>
+
+Содержимое .proto файла
+
+![proto](protofile.jpg)
+
+
+
+
 Клонируйте проект 
 ```shell
 git clone https://github.com/JavaBruse/grpcProj.git
