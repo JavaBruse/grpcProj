@@ -12,3 +12,4 @@ mvn clean package -Pserver
 ```shell
 mvn clean package -Pclient
 ```
+
