@@ -1,0 +1,7 @@
+FROM openjdk:11-jdk-slim
+
+WORKDIR /app
+
+COPY target/client.jar /app/client.jar
+
+ENTRYPOINT ["java", "-jar", "server.jar"]

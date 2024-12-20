@@ -1,25 +1,14 @@
 Для генерации файла протобаф
 ```shell
- protoc --java_out=./src/main/java/ ./src/main/resources/generator.proto
+ mvn clean install
 ```
-```shell
- protoc --plugin=protoc-gen-grpc-java=PATH_TO_protoc-gen-grpc-java
-```
+И все файлы сгенерирует плагин protobuf для java.
 
+собрать проект server
 ```shell
-protoc --plugin=protoc-gen-grpc-java=path/to/protoc-gen-grpc-java \
---grpc-java_out=lite:target/generated-sources/grpc \
---proto_path=src/main/proto src/main/proto/*.proto
+mvn clean package -Pserver
 ```
-
-
+собрать проект client
 ```shell
-protoc --plugin=protoc-gen-grpc-java=path/to/protoc-gen-grpc-java 
+mvn clean package -Pclient
 ```
-```shell
-protoc --grpc-java_out=lite:target/generated-sources/grpc 
-```
-```shell
-protoc --proto_path=src/main/proto src/main/proto/*.proto
-```
-
