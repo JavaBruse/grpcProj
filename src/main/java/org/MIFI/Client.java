@@ -17,9 +17,10 @@
 package org.MIFI;
 
 import io.grpc.*;
-import org.MIFI.protobuf.GreeterGrpc;
-import org.MIFI.protobuf.HelloReply;
-import org.MIFI.protobuf.HelloRequest;
+import org.MIFI.proto.GreeterGrpc;
+import org.MIFI.proto.HelloReply;
+import org.MIFI.proto.HelloRequest;
+
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;

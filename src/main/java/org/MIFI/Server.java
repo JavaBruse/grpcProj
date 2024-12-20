@@ -19,9 +19,9 @@ package org.MIFI;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.stub.StreamObserver;
-import org.MIFI.protobuf.GreeterGrpc;
-import org.MIFI.protobuf.HelloReply;
-import org.MIFI.protobuf.HelloRequest;
+import org.MIFI.proto.GreeterGrpc;
+import org.MIFI.proto.HelloReply;
+import org.MIFI.proto.HelloRequest;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
